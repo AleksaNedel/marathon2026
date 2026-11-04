@@ -1,0 +1,188 @@
+@use '../../shared/styles/abstracts/colors' as color;
+
+:host {
+  display: block;
+  min-height: 100%;
+  background: color.$neutral-100;
+}
+
+.page {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+
+.page-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color.$green-150;
+}
+
+.title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+.reservation-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  color: color.$neutral-600;
+}
+
+.status-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  color: color.$green-800;
+  background: color.$green-100;
+  font-size: 0.875rem;
+}
+
+.pending-notice {
+  margin: 1.25rem 0 0;
+  padding: 0.875rem 1rem;
+  border: 1px solid color.$orange-100;
+  border-radius: 0.5rem;
+  background: color.$orange-30;
+}
+
+.sync-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: color.$neutral-600;
+  font-size: 0.875rem;
+}
+
+.refresh-error {
+  margin: 0.5rem 0;
+  color: color.$red-400;
+}
+
+.participants {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.consolidated {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: color.$neutral-0;
+  box-shadow: 0 2px 12px color.$shadow;
+}
+
+.consolidated h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+}
+
+.consolidated-items {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.order-total {
+  margin-top: 1rem;
+  border-top: 2px solid color.$green-150;
+}
+
+.order-total p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.order-total strong {
+  color: color.$green-800;
+}
+
+.submit-button,
+.secondary-button {
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 0;
+  border-radius: 0.375rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.submit-button {
+  color: color.$neutral-0;
+  background: color.$green-gradient;
+}
+
+.submit-button:disabled,
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.order-total > .submit-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.secondary-button {
+  border: 1px solid color.$neutral-200;
+  color: color.$neutral-900;
+  background: color.$neutral-0;
+}
+
+.error-state {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background: color.$neutral-0;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.dialog-submit {
+  min-width: 6rem;
+}
+
+.remove-confirm-button {
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 0;
+  border-radius: 0.375rem;
+  color: color.$neutral-0;
+  background: color.$red-400;
+  font: inherit;
+  cursor: pointer;
+}
+
+.remove-confirm-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .order-total p {
+    font-size: 1.25rem;
+  }
+}
