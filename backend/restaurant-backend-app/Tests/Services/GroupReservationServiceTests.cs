@@ -8,6 +8,7 @@ using APIHandler.Repositories.Reservations;
 using APIHandler.Repositories.Tables;
 using APIHandler.Services.Auth;
 using APIHandler.Services.GroupReservations;
+using APIHandler.Services.GuestSessions;
 using APIHandler.Services.Locations;
 using AutoFixture.Xunit2;
 using Moq;
@@ -20,6 +21,7 @@ public class GroupReservationServiceTests
     private readonly Mock<ITableRepository> _tableRepositoryMock = new();
     private readonly Mock<IReservationRepository> _reservationRepositoryMock = new();
     private readonly Mock<IGuestSessionRepository> _guestSessionRepositoryMock = new();
+    private readonly Mock<IGuestSessionService> _guestSessionServiceMock = new();
     private readonly Mock<IUserService> _userServiceMock = new();
     private readonly Mock<ILocationService> _locationServiceMock = new();
 
@@ -32,6 +34,7 @@ public class GroupReservationServiceTests
             _tableRepositoryMock.Object,
             _reservationRepositoryMock.Object,
             _guestSessionRepositoryMock.Object,
+            _guestSessionServiceMock.Object,
             _userServiceMock.Object,
             _locationServiceMock.Object);
     }

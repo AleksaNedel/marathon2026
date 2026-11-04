@@ -1,0 +1,48 @@
+{
+  "RequestItems": {
+    "Locations": [
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "loc-1" },
+            "address": { "S": "Rustaveli Avenue 48" },
+            "description": { "S": "A welcoming central dining room serving seasonal Georgian and European dishes." },
+            "totalCapacity": { "N": "20" },
+            "averageOccupancy": { "S": "42%" },
+            "imageUrl": { "S": "assets/img/locations/rustaveli-avenue-48.jpg" },
+            "rating": { "N": "4.7" },
+            "specialtyDishIds": { "L": [{ "S": "dish-1" }, { "S": "dish-2" }, { "S": "dish-3" }] }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "loc-2" },
+            "address": { "S": "Baratashvili Street 14" },
+            "description": { "S": "A relaxed neighborhood restaurant known for fresh herbs and shareable plates." },
+            "totalCapacity": { "N": "20" },
+            "averageOccupancy": { "S": "56%" },
+            "imageUrl": { "S": "assets/img/locations/baratashvili-street-14.jpg" },
+            "rating": { "N": "4.5" },
+            "specialtyDishIds": { "L": [{ "S": "dish-4" }, { "S": "dish-5" }, { "S": "dish-6" }] }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "loc-3" },
+            "address": { "S": "Abashidze Street 9" },
+            "description": { "S": "A bright, contemporary dining space with a menu built around seasonal produce." },
+            "totalCapacity": { "N": "20" },
+            "averageOccupancy": { "S": "38%" },
+            "imageUrl": { "S": "assets/img/locations/abashidze-street-9.jpg" },
+            "rating": { "N": "4.8" },
+            "specialtyDishIds": { "L": [{ "S": "dish-7" }, { "S": "dish-8" }, { "S": "dish-9" }] }
+          }
+        }
+      }
+    ]
+  }
+}

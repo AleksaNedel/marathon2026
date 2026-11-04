@@ -1,0 +1,186 @@
+{
+  "RequestItems": {
+    "Dishes": [
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-1" },
+            "name": { "S": "Spring Salad" },
+            "description": { "S": "Tender spring greens, radish, cucumber, herbs, and a bright lemon dressing." },
+            "dishType": { "N": "0" },
+            "price": { "N": "12.00" },
+            "weight": { "S": "430 g" },
+            "calories": { "S": "280 kcal" },
+            "proteins": { "S": "8 g" },
+            "fats": { "S": "18 g" },
+            "carbohydrates": { "S": "24 g" },
+            "vitamins": { "S": "A, C, K" },
+            "imageUrl": { "S": "assets/img/dishes/spring-salad.jpg" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-2" },
+            "name": { "S": "Georgian Herb Chicken" },
+            "description": { "S": "Grilled chicken with tarragon, fresh herbs, and a light walnut sauce." },
+            "dishType": { "N": "1" },
+            "price": { "N": "18.50" },
+            "weight": { "S": "320 g" },
+            "calories": { "S": "510 kcal" },
+            "proteins": { "S": "38 g" },
+            "fats": { "S": "27 g" },
+            "carbohydrates": { "S": "28 g" },
+            "vitamins": { "S": "B6, B12, E" },
+            "imageUrl": { "S": "assets/img/dish.png" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-3" },
+            "name": { "S": "Honey Walnut Cake" },
+            "description": { "S": "Soft layered cake with honey cream and toasted walnuts." },
+            "dishType": { "N": "2" },
+            "price": { "N": "8.00" },
+            "weight": { "S": "150 g" },
+            "calories": { "S": "390 kcal" },
+            "proteins": { "S": "6 g" },
+            "fats": { "S": "22 g" },
+            "carbohydrates": { "S": "43 g" },
+            "vitamins": { "S": "B2, E" },
+            "imageUrl": { "S": "assets/img/dish.png" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-4" },
+            "name": { "S": "Pkhali Trio" },
+            "description": { "S": "Spinach, beet, and carrot pkhali with walnuts, herbs, and pomegranate." },
+            "dishType": { "N": "0" },
+            "price": { "N": "9.00" },
+            "weight": { "S": "240 g" },
+            "calories": { "S": "310 kcal" },
+            "proteins": { "S": "9 g" },
+            "fats": { "S": "23 g" },
+            "carbohydrates": { "S": "20 g" },
+            "vitamins": { "S": "A, C, E, K" },
+            "imageUrl": { "S": "assets/img/dish.png" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-5" },
+            "name": { "S": "Avocado Pine Nut Bowl" },
+            "description": { "S": "Ripe avocado, leafy greens, toasted pine nuts, and citrus dressing." },
+            "dishType": { "N": "1" },
+            "price": { "N": "14.50" },
+            "weight": { "S": "380 g" },
+            "calories": { "S": "420 kcal" },
+            "proteins": { "S": "11 g" },
+            "fats": { "S": "30 g" },
+            "carbohydrates": { "S": "31 g" },
+            "vitamins": { "S": "A, C, E, K" },
+            "imageUrl": { "S": "assets/img/dishes/avocado-pine-nut-bowl.jpg" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-6" },
+            "name": { "S": "Churchkhela Cheesecake" },
+            "description": { "S": "Creamy cheesecake finished with grape must and crushed walnuts." },
+            "dishType": { "N": "2" },
+            "price": { "N": "8.50" },
+            "weight": { "S": "160 g" },
+            "calories": { "S": "440 kcal" },
+            "proteins": { "S": "8 g" },
+            "fats": { "S": "29 g" },
+            "carbohydrates": { "S": "38 g" },
+            "vitamins": { "S": "A, B2, E" },
+            "imageUrl": { "S": "assets/img/dish.png" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-7" },
+            "name": { "S": "Fresh Strawberry Mint Salad" },
+            "description": { "S": "Sweet strawberries with baby greens, mint, and a mild balsamic dressing." },
+            "dishType": { "N": "0" },
+            "price": { "N": "11.00" },
+            "weight": { "S": "350 g" },
+            "calories": { "S": "250 kcal" },
+            "proteins": { "S": "7 g" },
+            "fats": { "S": "12 g" },
+            "carbohydrates": { "S": "32 g" },
+            "vitamins": { "S": "A, C, K" },
+            "imageUrl": { "S": "assets/img/dishes/fresh-strawberry-mint-salad.jpg" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-3" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-8" },
+            "name": { "S": "Roasted Sweet Potato & Lentil Salad" },
+            "description": { "S": "Roasted sweet potato, lentils, greens, and toasted seeds with lemon dressing." },
+            "dishType": { "N": "1" },
+            "price": { "N": "13.00" },
+            "weight": { "S": "400 g" },
+            "calories": { "S": "460 kcal" },
+            "proteins": { "S": "17 g" },
+            "fats": { "S": "16 g" },
+            "carbohydrates": { "S": "63 g" },
+            "vitamins": { "S": "A, C, B6" },
+            "imageUrl": { "S": "assets/img/dishes/roasted-sweet-potato-and-lentil-salad.jpg" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-3" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "dish-9" },
+            "name": { "S": "Pear Sorbet with Mint" },
+            "description": { "S": "Light pear sorbet served with fresh mint and a squeeze of lemon." },
+            "dishType": { "N": "2" },
+            "price": { "N": "7.50" },
+            "weight": { "S": "140 g" },
+            "calories": { "S": "180 kcal" },
+            "proteins": { "S": "1 g" },
+            "fats": { "S": "0 g" },
+            "carbohydrates": { "S": "45 g" },
+            "vitamins": { "S": "C" },
+            "imageUrl": { "S": "assets/img/dish.png" },
+            "state": { "N": "1" },
+            "locationId": { "S": "loc-3" }
+          }
+        }
+      }
+    ]
+  }
+}

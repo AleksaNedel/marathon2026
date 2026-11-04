@@ -8,6 +8,7 @@ using APIHandler.Repositories.GuestSessions;
 using APIHandler.Repositories.Reservations;
 using APIHandler.Repositories.Tables;
 using APIHandler.Services.Auth;
+using APIHandler.Services.GuestSessions;
 using APIHandler.Services.Locations;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ public class GroupReservationService(
     ITableRepository tableRepository,
     IReservationRepository reservationRepository,
     IGuestSessionRepository guestSessionRepository,
+    IGuestSessionService guestSessionService,
     IUserService userService,
     ILocationService locationService) : IGroupReservationService
 {
@@ -89,9 +91,13 @@ public class GroupReservationService(
     {
         GroupReservation? group = await groupReservationRepository.GetByReservationIdAsync(reservationId);
         if (group is not null)
+        {
+            await guestSessionService.CreateGroupOwnerSessionAsync(userId, group.GroupReservationId);
             return;
+        }
 
-        await CreateGroupReservationAsync(reservationId);
+        GroupReservation createdGroup = await CreateGroupReservationAsync(reservationId);
+        await guestSessionService.CreateGroupOwnerSessionAsync(userId, createdGroup.GroupReservationId);
     }
 
     public async Task UpdateGroupReservationStatusAsync(string groupReservationId, GroupReservationStatus status)
@@ -143,4 +149,3 @@ public class GroupReservationService(
         return new GetGroupInviteTokenResponse(groupReservation.ReservationToken);
     }
 }
-

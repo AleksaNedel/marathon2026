@@ -1,0 +1,126 @@
+{
+  "RequestItems": {
+    "Tables": [
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-1" },
+            "locationId": { "S": "loc-1" },
+            "capacity": { "N": "2" },
+            "tableNumber": { "N": "1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-2" },
+            "locationId": { "S": "loc-1" },
+            "capacity": { "N": "4" },
+            "tableNumber": { "N": "2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-3" },
+            "locationId": { "S": "loc-1" },
+            "capacity": { "N": "6" },
+            "tableNumber": { "N": "3" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-4" },
+            "locationId": { "S": "loc-1" },
+            "capacity": { "N": "8" },
+            "tableNumber": { "N": "4" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-5" },
+            "locationId": { "S": "loc-2" },
+            "capacity": { "N": "2" },
+            "tableNumber": { "N": "1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-6" },
+            "locationId": { "S": "loc-2" },
+            "capacity": { "N": "4" },
+            "tableNumber": { "N": "2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-7" },
+            "locationId": { "S": "loc-2" },
+            "capacity": { "N": "6" },
+            "tableNumber": { "N": "3" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-8" },
+            "locationId": { "S": "loc-2" },
+            "capacity": { "N": "8" },
+            "tableNumber": { "N": "4" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-9" },
+            "locationId": { "S": "loc-3" },
+            "capacity": { "N": "2" },
+            "tableNumber": { "N": "1" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-10" },
+            "locationId": { "S": "loc-3" },
+            "capacity": { "N": "4" },
+            "tableNumber": { "N": "2" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-11" },
+            "locationId": { "S": "loc-3" },
+            "capacity": { "N": "6" },
+            "tableNumber": { "N": "3" }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": { "S": "table-12" },
+            "locationId": { "S": "loc-3" },
+            "capacity": { "N": "8" },
+            "tableNumber": { "N": "4" }
+          }
+        }
+      }
+    ]
+  }
+}
