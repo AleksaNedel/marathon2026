@@ -1,0 +1,104 @@
+<main class="page">
+  @if (loading()) {
+    <p class="loading" role="status">Loading group pre-order…</p>
+  } @else if (errorMessage()) {
+    <section class="error-state" role="alert">
+      <p>{{ errorMessage() }}</p>
+      <button type="button" class="secondary-button" (click)="loadGroup()">Try again</button>
+    </section>
+  } @else if (invite()) {
+    <header class="page-header">
+      <div class="title-row">
+        <h1>Group Pre-Order</h1>
+        <span class="status-badge">{{ isSubmitted() ? 'Sent to Restaurant' : 'Collecting pre-orders' }}</span>
+      </div>
+      <div class="reservation-details">
+        <span>{{ invite()?.LocationAddress }}</span>
+        <span>{{ invite()?.StartTime | date: 'MMM d, y' }}</span>
+        <span>{{ invite()?.StartTime | date: 'shortTime' }} – {{ invite()?.EndTime | date: 'shortTime' }}</span>
+        <span>{{ participants().length }} of {{ maxGuestCount() }} guests</span>
+      </div>
+    </header>
+
+    @if (!isSubmitted()) {
+      <div class="sync-controls">
+        <span>
+          @if (updatedAt()) {
+            Updated at {{ updatedAt() | date: 'HH:mm:ss' }}
+          }
+        </span>
+        <button type="button" class="secondary-button" (click)="refreshGroup()">Refresh</button>
+      </div>
+      @if (refreshError()) {
+        <p class="refresh-error" role="status">{{ refreshError() }}</p>
+      }
+    }
+
+    @if (pendingParticipants() > 0) {
+      <p class="pending-notice" role="status">
+        {{ pendingParticipants() }} participant{{ pendingParticipants() === 1 ? '' : 's' }}
+        {{ pendingParticipants() === 1 ? "hasn't" : "haven't" }} submitted their cart yet — their dishes won't be included in the order
+      </p>
+    }
+
+    <ul class="participants">
+      @for (person of participants(); track person.id) {
+        <li>
+          <app-participant-card
+            [participant]="person"
+            [isMe]="person.id === ownerSessionId()"
+            [canRemove]="!isSubmitted()"
+            (removeClick)="requestRemove($event)"
+          />
+        </li>
+      }
+    </ul>
+
+    <section class="consolidated">
+      <h2>Consolidated pre-order</h2>
+      @if (consolidatedOrder().items.length) {
+        <ul class="consolidated-items">
+          @for (item of consolidatedOrder().items; track item.dish.id) {
+            <li>{{ item.dish.name }} × {{ item.quantity }}</li>
+          }
+        </ul>
+      } @else {
+        <p>Participants haven't added any dishes yet</p>
+      }
+    </section>
+
+    <footer class="order-total">
+      <p><span>Grand Total</span><strong>{{ consolidatedOrder().total | currency }}</strong></p>
+      @if (!isSubmitted()) {
+        <button type="button" class="submit-button" [disabled]="!canSubmit() || submitting()" (click)="openSubmitDialog()">
+          Submit Pre-Order
+        </button>
+      }
+    </footer>
+  }
+</main>
+
+@if (dialogOpen()) {
+  <app-modal title="Submit Pre-Order" [closeOnBackdrop]="!submitting()" (closed)="closeSubmitDialog()">
+    <p>Submit the consolidated pre-order to the restaurant?</p>
+    <div modal-actions class="dialog-actions">
+      <button type="button" class="secondary-button" [disabled]="submitting()" (click)="closeSubmitDialog()">Cancel</button>
+      <button type="button" class="submit-button dialog-submit" [disabled]="submitting()" (click)="submitOrder()">
+        {{ submitting() ? 'Submitting…' : 'Submit' }}
+      </button>
+    </div>
+  </app-modal>
+}
+
+@if (removeTarget(); as participant) {
+  <app-modal title="Remove Guest" [closeOnBackdrop]="!removing()" (closed)="closeRemoveDialog()">
+    <p>
+      Are you sure you want to remove {{ participant.name }} and their pre-order from this reservation?
+      This action cannot be undone.
+    </p>
+    <div modal-actions class="dialog-actions">
+      <button type="button" class="secondary-button" [disabled]="removing()" (click)="closeRemoveDialog()">Cancel</button>
+      <button type="button" class="remove-confirm-button" [disabled]="removing()" (click)="confirmRemove()">Remove Guest</button>
+    </div>
+  </app-modal>
+}

@@ -189,7 +189,10 @@ public class ReservationServiceTests
         // Act
         var result = await _reservationService.CreateReservationAsync(request, callerId, isWaiter: false, _mockLogger.Object);
 
-        _mockGroupReservationService.Verify(r => r.CreateGroupReservationAsync(It.IsAny<string>()));
+        _mockGroupReservationService.Verify(
+            r => r.CreateGroupReservationIfDoesNotExistAsync(callerId, It.IsAny<string>()),
+            Times.Once);
+        _mockGroupReservationService.Verify(r => r.CreateGroupReservationAsync(It.IsAny<string>()), Times.Never);
     }
 
     [Theory, AutoData]
@@ -232,6 +235,46 @@ public class ReservationServiceTests
         var result = await _reservationService.CreateReservationAsync(request, callerId, isWaiter: false, _mockLogger.Object);
 
         _mockGroupReservationService.Verify(r => r.CreateGroupReservationAsync(It.IsAny<string>()), Times.Never);
+        _mockGroupReservationService.Verify(
+            r => r.CreateGroupReservationIfDoesNotExistAsync(It.IsAny<string>(), It.IsAny<string>()),
+            Times.Never);
+    }
+
+    [Theory, AutoData]
+    public async Task CreateReservationAsync_WaiterReservationWithoutCustomer_ShouldNotCreateOwnerSession(
+        CreateReservationRequest request,
+        Location location,
+        Table table,
+        WaiterListItem waiter)
+    {
+        table.Id = request.TableId;
+        table.LocationId = location.Id;
+        waiter.LocationId = location.Id;
+        request.CustomerEmail = null;
+        request.StartTime = DateTime.UtcNow.AddHours(1);
+        request.EndTime = request.StartTime.AddHours(1);
+        request.GuestCount = 2;
+        table.Capacity = 4;
+
+        _mockLocationService
+            .Setup(r => r.GetLocationByTableIdAsync(request.TableId))
+            .ReturnsAsync(location);
+        _mockWaiterService
+            .Setup(r => r.FindWaiterByIdAsync(waiter.UserId))
+            .ReturnsAsync(waiter);
+        _mockReservationRepository
+            .Setup(r => r.GetReservationsByTableIdAsync(request.TableId))
+            .ReturnsAsync([]);
+        _mockLocationRepository
+            .Setup(r => r.GetTableByIdAsync(request.TableId))
+            .ReturnsAsync(table);
+
+        await _reservationService.CreateReservationAsync(request, waiter.UserId, isWaiter: true, _mockLogger.Object);
+
+        _mockGroupReservationService.Verify(r => r.CreateGroupReservationAsync(It.IsAny<string>()), Times.Once);
+        _mockGroupReservationService.Verify(
+            r => r.CreateGroupReservationIfDoesNotExistAsync(It.IsAny<string>(), It.IsAny<string>()),
+            Times.Never);
     }
 
     [Theory, AutoData]

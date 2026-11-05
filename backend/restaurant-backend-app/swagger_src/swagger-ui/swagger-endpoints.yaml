@@ -157,7 +157,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /guest/groups/{groupReservationId}/submit:
+  /group-reservations/{groupReservationId}/submit:
     post:
       tags:
         - Group Reservations
@@ -186,9 +186,22 @@ paths:
                 type: array
                 items:
                   type: object
-                  description: Enriched dishes data
+                  required:
+                    - dishId
+                    - quantity
+                  properties:
+                    dishId:
+                      type: string
+                    quantity:
+                      type: integer
         '400':
-          description: Invalid request - missing parameters or validation error
+          description: Invalid request, no submitted sessions, or no submitted dishes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Group reservation or reservation not found
           content:
             application/json:
               schema:
