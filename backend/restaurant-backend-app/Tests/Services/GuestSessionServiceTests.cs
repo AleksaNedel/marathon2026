@@ -91,6 +91,32 @@ public class GuestSessionServiceTests
 
     [Theory]
     [AutoData]
+    public async Task CreateGroupOwnerSessionAsync_RepeatedCall_CreatesOnlyOneOwnerSession(
+        string userId,
+        string groupReservationId)
+    {
+        var sessions = new List<GuestSession>();
+        _mockGuestSessionRepository
+            .Setup(repository => repository.GetAllByGroupReservationIdAsync(groupReservationId))
+            .Returns(() => Task.FromResult(sessions));
+        _mockGuestSessionRepository
+            .Setup(repository => repository.SaveAsync(It.IsAny<GuestSession>()))
+            .Callback<GuestSession>(session => sessions.Add(session));
+
+        await _guestSessionService.CreateGroupOwnerSessionAsync(userId, groupReservationId);
+        await _guestSessionService.CreateGroupOwnerSessionAsync(userId, groupReservationId);
+
+        var ownerSession = Assert.Single(sessions);
+        Assert.True(ownerSession.IsOwnerSession);
+        Assert.Equal(userId, ownerSession.OwnerUserId);
+        Assert.Equal(groupReservationId, ownerSession.GroupReservationId);
+        _mockGuestSessionRepository.Verify(
+            repository => repository.SaveAsync(It.IsAny<GuestSession>()),
+            Times.Once);
+    }
+
+    [Theory]
+    [AutoData]
     public async Task CreateGuestSessionAsync_InvalidGroupReservationId_ThrowsGroupReservationNotFoundException(CreateGuestSessionRequest request)
     {
         _mockGroupReservationRepository
